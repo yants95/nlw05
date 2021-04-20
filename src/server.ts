@@ -1,11 +1,11 @@
 import './database'
+import { routes } from './routes'
 
 import express from 'express'
 
 const app = express()
 
-app.get('/', (_, response) => {
-  return response.json({ msg: 'Hello world!' })
-})
+app.use(express.json())
+app.use(routes)
 
 app.listen(3333, () => console.log('Server running!'))
