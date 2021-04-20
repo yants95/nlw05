@@ -4,7 +4,7 @@ import { Request, Response } from 'express'
 import { getCustomRepository } from 'typeorm'
 
 export class SettingsController {
-  async create (request: Request, response: Response) {
+  async create (request: Request, response: Response): Promise<Response> {
     const { chat, username } = request.body
     const settingRepository = getCustomRepository(SettingRepository)
 
