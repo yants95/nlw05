@@ -1,4 +1,4 @@
-import { SettingRepository } from '../repositories'
+import { SettingRepository } from '@/repositories'
 
 import { Request, Response } from 'express'
 import { getCustomRepository } from 'typeorm'

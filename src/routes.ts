@@ -1,4 +1,4 @@
-import { SettingsController } from './controllers'
+import { SettingsController } from '@/controllers'
 
 import { Router } from 'express'
 

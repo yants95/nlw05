@@ -1,5 +1,6 @@
-import './database'
-import { routes } from './routes'
+import 'module-alias/register'
+import '@/database'
+import { routes } from '@/routes'
 
 import express from 'express'
 
