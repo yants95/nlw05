@@ -2,6 +2,7 @@ import { CreateMessageDTO } from '@/dtos'
 import { Message } from '@/entities'
 
 import { getRepository, Repository } from 'typeorm'
+
 export class CreateMessageService {
   private readonly repository: Repository<Message>
 
