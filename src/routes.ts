@@ -1,15 +1,19 @@
-import { SettingsController, UserController, MessageController } from '@/controllers'
+import { CreateSettingController, CreateUserController, CreateMessageController, ListMessagesByUserController } from '@/controllers'
 
 import { Router } from 'express'
 
 const routes = Router()
 
-const settingsController = new SettingsController()
-const usersController = new UserController()
-const messageController = new MessageController()
+const createSettingController = new CreateSettingController()
+const createUserController = new CreateUserController()
+const createMessageController = new CreateMessageController()
+const listMessagesByUserController = new ListMessagesByUserController()
 
-routes.post('/settings', settingsController.create)
-routes.post('/users', usersController.create)
-routes.post('/messages', messageController.create)
+routes.post('/settings', createSettingController.create)
+
+routes.post('/users', createUserController.create)
+
+routes.post('/messages', createMessageController.create)
+routes.get('/messages/:id', listMessagesByUserController.list)
 
 export { routes }
