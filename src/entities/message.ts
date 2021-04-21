@@ -1,4 +1,4 @@
-import { User } from '../entities'
+import { User } from '@/entities'
 
 import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
