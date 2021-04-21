@@ -1,7 +1,6 @@
 import { Message } from '@/entities'
 
 import { getRepository, Repository } from 'typeorm'
-
 export class ListMessageServiceByUser {
   private readonly repository: Repository<Message>
 

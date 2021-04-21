@@ -2,7 +2,6 @@ import { CreateSettingDTO } from '@/dtos'
 import { Setting } from '@/entities'
 
 import { getRepository, Repository } from 'typeorm'
-
 export class CreateSettingService {
   private readonly repository: Repository<Setting>
 

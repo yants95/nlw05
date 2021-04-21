@@ -1,7 +1,6 @@
 import { User } from '@/entities'
 
 import { Repository, getRepository } from 'typeorm'
-
 export class CreateUserService {
   private readonly repository: Repository<User>
 
