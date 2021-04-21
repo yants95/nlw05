@@ -1,20 +1,22 @@
-import { MessageRepository } from '@/repositories'
 import { CreateMessageDTO } from '@/dtos'
 import { Message } from '@/entities'
 
-import { getCustomRepository } from 'typeorm'
-
+import { getRepository, Repository } from 'typeorm'
 export class CreateMessageService {
-  async create (data: CreateMessageDTO): Promise<Message> {
-    const messageRepository = getCustomRepository(MessageRepository)
+  private readonly repository: Repository<Message>
 
-    const message = messageRepository.create({
+  constructor () {
+    this.repository = getRepository(Message)
+  }
+
+  async create (data: CreateMessageDTO): Promise<Message> {
+    const message = this.repository.create({
       admin_id: data.admin_id,
       text: data.text,
       user_id: data.user_id
     })
 
-    await messageRepository.save(message)
+    await this.repository.save(message)
 
     return message
   }
