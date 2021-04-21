@@ -1,11 +1,11 @@
-import { SettingsService } from '@/services'
+import { CreateSettingService } from '@/services'
 
 import { Request, Response } from 'express'
-export class SettingsController {
+export class CreateSettingController {
   async create (request: Request, response: Response): Promise<Response> {
     try {
-      const settingsService = new SettingsService()
-      const setting = await settingsService.create(request.body)
+      const createSettingService = new CreateSettingService()
+      const setting = await createSettingService.create(request.body)
 
       return response.json(setting)
     } catch (err) {

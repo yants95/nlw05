@@ -1,19 +1,19 @@
-import { MessageService } from '@/services'
+import { CreateMessageService } from '@/services'
 
 import { Request, Response } from 'express'
 
-export class MessageController {
+export class CreateMessageController {
   async create (request: Request, response: Response): Promise<Response> {
     try {
       const { admin_id, user_id, text } = request.body
-      const messageService = new MessageService()
+      const createMessageService = new CreateMessageService()
 
       const messageParams = {
         admin_id,
         user_id,
         text
       }
-      const message = await messageService.create(messageParams)
+      const message = await createMessageService.create(messageParams)
 
       return response.json(message)
     } catch (err) {

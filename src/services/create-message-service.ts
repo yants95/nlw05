@@ -4,7 +4,7 @@ import { Message } from '@/entities'
 
 import { getCustomRepository } from 'typeorm'
 
-export class MessageService {
+export class CreateMessageService {
   async create (data: CreateMessageDTO): Promise<Message> {
     const messageRepository = getCustomRepository(MessageRepository)
 
