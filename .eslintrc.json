@@ -13,6 +13,10 @@
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/no-floating-promises": "off",
-    "import/export": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "import/export": "off",
+    "camelcase": "off",
+    "no-undef": "off"
   }
 }
