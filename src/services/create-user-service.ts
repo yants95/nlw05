@@ -1,11 +1,12 @@
 import { User } from '@/entities'
+import { UserRepository } from '@/repositories'
 
-import { Repository, getRepository } from 'typeorm'
+import { getCustomRepository } from 'typeorm'
 export class CreateUserService {
-  private readonly repository: Repository<User>
+  private readonly repository: UserRepository
 
   constructor () {
-    this.repository = getRepository(User)
+    this.repository = getCustomRepository(UserRepository)
   }
 
   async create (email: string): Promise<User> {

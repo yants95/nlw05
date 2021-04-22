@@ -1,11 +1,12 @@
 import { Message } from '@/entities'
+import { MessageRepository } from '@/repositories'
 
-import { getRepository, Repository } from 'typeorm'
+import { getCustomRepository } from 'typeorm'
 export class ListMessageServiceByUser {
-  private readonly repository: Repository<Message>
+  private readonly repository: MessageRepository
 
   constructor () {
-    this.repository = getRepository(Message)
+    this.repository = getCustomRepository(MessageRepository)
   }
 
   async list (user_id: string): Promise<Message[]> {

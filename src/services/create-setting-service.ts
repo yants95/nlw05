@@ -1,12 +1,13 @@
 import { CreateSettingDTO } from '@/dtos'
 import { Setting } from '@/entities'
+import { SettingRepository } from '@/repositories'
 
-import { getRepository, Repository } from 'typeorm'
+import { getCustomRepository } from 'typeorm'
 export class CreateSettingService {
-  private readonly repository: Repository<Setting>
+  private readonly repository: SettingRepository
 
   constructor () {
-    this.repository = getRepository(Setting)
+    this.repository = getCustomRepository(SettingRepository)
   }
 
   async create (data: CreateSettingDTO): Promise<Setting> {
