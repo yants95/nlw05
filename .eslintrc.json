@@ -17,6 +17,7 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/export": "off",
     "camelcase": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-unused-vars": "off"
   }
 }
