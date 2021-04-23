@@ -6,7 +6,9 @@ import {
   FindUserByEmailService,
   FindUserByIdService,
   CreateMessageService,
-  ListMessageServiceByUser
+  ListMessageServiceByUser,
+  FindBySocketIdService,
+  FindAllConnectionsWithoutAdminService
 } from '@/services'
 
 import { CreateConnectionDTO, CreateMessageDTO, CreateParamsDTO } from '@/dtos'
@@ -18,6 +20,8 @@ io.on('connect', (socket) => {
   const findUserByIdService = new FindUserByIdService()
   const createMessageService = new CreateMessageService()
   const listMessageServiceByUser = new ListMessageServiceByUser()
+  const findBySocketIdService = new FindBySocketIdService()
+  const findAllConnectionsWithoutAdminService = new FindAllConnectionsWithoutAdminService()
 
   socket.on('client_first_access', async params => {
     const socket_id = socket.id
@@ -65,5 +69,27 @@ io.on('connect', (socket) => {
     const allMessages = await listMessageServiceByUser.list(user_id)
 
     socket.emit('client_list_all_messages', allMessages)
+
+    const allUsers = await findAllConnectionsWithoutAdminService.find()
+    io.emit('admin_list_all_users', allUsers)
+  })
+
+  socket.on('client_send_to_admin', async params => {
+    const { socket_admin_id } = params
+    const socket_id = socket.id
+
+    const { user_id } = await findBySocketIdService.find(socket_id)
+
+    const messageParams = {
+      ...params,
+      user_id
+    }
+
+    const message = await createMessageService.create(messageParams)
+
+    io.to(socket_admin_id).emit('admin_receive_message', {
+      message,
+      socket_id
+    })
   })
 })
