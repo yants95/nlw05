@@ -5,7 +5,8 @@ import {
   CreateUserService,
   FindUserByEmailService,
   FindUserByIdService,
-  CreateMessageService
+  CreateMessageService,
+  ListMessageServiceByUser
 } from '@/services'
 
 import { CreateConnectionDTO, CreateMessageDTO, CreateParamsDTO } from '@/dtos'
@@ -16,6 +17,7 @@ io.on('connect', (socket) => {
   const findUserByEmailService = new FindUserByEmailService()
   const findUserByIdService = new FindUserByIdService()
   const createMessageService = new CreateMessageService()
+  const listMessageServiceByUser = new ListMessageServiceByUser()
 
   socket.on('client_first_access', async params => {
     const socket_id = socket.id
@@ -59,5 +61,9 @@ io.on('connect', (socket) => {
     }
 
     await createMessageService.create(messageParams)
+
+    const allMessages = await listMessageServiceByUser.list(user_id)
+
+    socket.emit('client_list_all_messages', allMessages)
   })
 })
