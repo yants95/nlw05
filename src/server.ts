@@ -1,3 +1,5 @@
+import 'reflect-metadata'
+
 import { http } from './http'
 import '@/websocket/client'
 import '@/websocket/admin'
